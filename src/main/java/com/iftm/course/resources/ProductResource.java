@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.iftm.course.Services.ProductService;
-import com.iftm.course.entities.Product;
+import com.iftm.course.dto.ProductDTO;
+import com.iftm.course.services.ProductService;
 
 @RestController
 @RequestMapping(value = "/products")
@@ -18,16 +18,17 @@ public class ProductResource {
 	
 	@Autowired
 	private ProductService service;
-	
+
 	@GetMapping
-	public ResponseEntity<List<Product>> findAll() {
-		List<Product> List = service.findAll();
-		return ResponseEntity.ok().body(List);
+	public ResponseEntity<List<ProductDTO>> findAll() {	
+		List<ProductDTO> list = service.findAll();
+		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Product> findById(@PathVariable Long id) {
-		Product obj = service.findById(id);
-		return ResponseEntity.ok().body(obj);
+	public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
+		ProductDTO dto = service.findById(id);
+		return ResponseEntity.ok().body(dto);
 	}
+	
 }

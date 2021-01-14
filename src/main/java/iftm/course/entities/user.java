@@ -1,4 +1,4 @@
-package com.iftm.course.entities;
+package iftm.course.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,13 +15,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_user")
-public class User implements Serializable {
+public class user implements Serializable {	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
+	private String none;
 	private String email;
 	private String phone;
 	private String password;
@@ -30,13 +30,14 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders = new ArrayList<>();
 	
-	public User() {
+	public user() {
+		
 	}
 
-	public User(Long id, String name, String email, String phone, String password) {
+	public user(Long id, String none, String email, String phone, String password) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.none = none;
 		this.email = email;
 		this.phone = phone;
 		this.password = password;
@@ -50,12 +51,12 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNone() {
+		return none;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNone(String none) {
+		this.none = none;
 	}
 
 	public String getEmail() {
@@ -80,8 +81,8 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
+	}	
+	
 	public List<Order> getOrders() {
 		return orders;
 	}
@@ -102,7 +103,7 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		user other = (user) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -110,7 +111,6 @@ public class User implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
 
+	
 }

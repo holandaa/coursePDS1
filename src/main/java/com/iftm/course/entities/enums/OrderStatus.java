@@ -1,6 +1,7 @@
 package com.iftm.course.entities.enums;
 
 public enum OrderStatus {
+	
 	WAITING_PAYMENT(1),
 	PAID(2),
 	SHIPPED(3),
@@ -8,6 +9,7 @@ public enum OrderStatus {
 	CANCELED(5);
 	
 	private int code;
+	
 	private OrderStatus(int code) {
 		this.code = code;
 	}
@@ -24,4 +26,5 @@ public enum OrderStatus {
 		}
 		throw new IllegalArgumentException("Invalid OrderStatus code");
 	}
+
 }

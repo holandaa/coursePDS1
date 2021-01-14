@@ -12,7 +12,7 @@ import com.iftm.course.entities.Product;
 @Embeddable
 public class OrderItemPK implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "order_id")
 	private Order order;
@@ -67,6 +67,5 @@ public class OrderItemPK implements Serializable {
 			return false;
 		return true;
 	}
-	
 	
 }

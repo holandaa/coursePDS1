@@ -1,4 +1,4 @@
-package com.iftm.course.entities;
+package iftm.course.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -6,33 +6,42 @@ import java.time.Instant;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.apache.catalina.User;
+import org.springframework.data.annotation.Id;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
-@Table(name = "tb_payment")
-public class Payment implements Serializable {
-	private static final long serialVersionUID = 1L;
+@Table(name = "tb_user")
+public class Order implements Serializable {
+	public static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
 	
-	@OneToOne
-	@MapsId
-	private Order order;
 	
-	public Payment() {
+	
+	@ManyToOne
+	@JoinColumn(name = "client_id")
+	private User client;
+	
+	public Order() {
+		
 	}
 
-	public Payment(Long id, Instant moment, Order order) {
+	public Order(Long id, Instant moment, User client) {
 		super();
 		this.id = id;
 		this.moment = moment;
-		this.order = order;
+		this.client = client;
 	}
 
 	public Long getId() {
@@ -51,12 +60,12 @@ public class Payment implements Serializable {
 		this.moment = moment;
 	}
 
-	public Order getOrder() {
-		return order;
+	public User getClient() {
+		return client;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setClient(User client) {
+		this.client = client;
 	}
 
 	@Override
@@ -75,7 +84,7 @@ public class Payment implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Payment other = (Payment) obj;
+		Order other = (Order) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -83,5 +92,7 @@ public class Payment implements Serializable {
 			return false;
 		return true;
 	}
+	
+	
 
 }

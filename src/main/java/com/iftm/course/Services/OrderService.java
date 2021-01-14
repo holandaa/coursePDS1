@@ -1,4 +1,4 @@
-package com.iftm.course.Services;
+package com.iftm.course.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,4 +23,5 @@ public class OrderService {
 		Optional<Order> obj = repository.findById(id);
 		return obj.get();
 	}
+
 }
